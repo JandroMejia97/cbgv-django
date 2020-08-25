@@ -1,0 +1,8 @@
+<h1>{{ categoria.nombre }}</h1>
+<ul>
+{% for subcategoria in subcategorias %}
+<li>{{subcategoria.nombre }}</li>
+{% empty %}
+<li>No hay ni mergas </li>
+{% endfor %}
+</ul>

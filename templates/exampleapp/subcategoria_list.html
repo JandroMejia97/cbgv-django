@@ -1,0 +1,12 @@
+{% extends '../base.html' %}
+{% block content %}
+  <h2>SubCategorias</h2>
+  <a href="{% url 'example:subcategorias-add' %}">Añadir</a>
+  <ul>
+    {% for subcategoria in subcategorias %}
+      <li>{{ subcategoria.nombre }}</li>
+    {% empty %}
+      <p>No hay subcategorías</p>
+    {% endfor %}
+  </ul>
+{% endblock %}

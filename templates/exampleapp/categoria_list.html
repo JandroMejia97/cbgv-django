@@ -1,0 +1,12 @@
+{% extends '../base.html' %}
+{% block content %}
+  <h2>Categorías</h2>
+  <a href="{% url 'example:categorias-add' %}">Añadir</a>
+  <ul>
+    {% for categoria in categorias %}
+      <li><a href="{% url 'example:categoria-detail' categoria.pk %}">{{ categoria.nombre }}</a></li>
+    {% empty %}
+      <p>No hay categorías</p>
+    {% endfor %}
+  </ul>
+{% endblock %}
