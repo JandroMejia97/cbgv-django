@@ -29,7 +29,10 @@ class CategoriaDetail(generic.DetailView):
         if self.object:
             context['subcategorias'] = SubCategoria.objects.filter(categoria=self.object)      
         return context
-    
+
+class CategoriaUpdate(generic.UpdateView):
+    model = Categoria
+    fields = ['nombre']    
 
 class CategoriaList(generic.ListView):
     model = Categoria
