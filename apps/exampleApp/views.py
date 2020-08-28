@@ -22,6 +22,7 @@ class SubCategoriaCreate(generic.CreateView):
 class CategoriaDetail(generic.DetailView):
     context_object_name = 'categoria'
     model = Categoria
+
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
@@ -30,9 +31,17 @@ class CategoriaDetail(generic.DetailView):
             context['subcategorias'] = SubCategoria.objects.filter(categoria=self.object)      
         return context
 
+
 class CategoriaUpdate(generic.UpdateView):
     model = Categoria
-    fields = ['nombre']    
+    fields = ['nombre']
+    success_url = reverse_lazy('example:categorias-list')
+
+
+class CategoriaDelete(generic.DeleteView):
+    model = Categoria
+    success_url = reverse_lazy('example:categorias-list')
+
 
 class CategoriaList(generic.ListView):
     model = Categoria

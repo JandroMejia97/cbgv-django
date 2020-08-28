@@ -4,8 +4,17 @@
   <a href="{% url 'example:categorias-add' %}">Añadir</a>
   <ul>
     {% for categoria in categorias %}
-      <li><a href="{% url 'example:categoria-detail' categoria.pk %}">{{ categoria.nombre }}</a> <a href="{% url 'example:categoria-update' categoria.pk %}">Editar</a></li>
-
+      <li>
+        <a href="{% url 'example:categorias-detail' categoria.pk %}">
+          {{ categoria.nombre }}
+        </a>
+        <a href="{% url 'example:categorias-update' categoria.pk %}">
+          Editar
+        </a>
+        <a href="{% url 'example:categorias-delete' categoria.pk %}">
+          Eliminar
+        </a>
+      </li>
     {% empty %}
       <p>No hay categorías</p>
     {% endfor %}
