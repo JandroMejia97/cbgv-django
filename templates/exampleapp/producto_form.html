@@ -1,11 +1,11 @@
 {% extends '../base.html' %}
 {% block content %}
 {% if object %}
-<h2>Update SubCategoria</h2>
+<h2>Update Producto</h2>
 <form action="{% url 'example:subcategorias-update' object.pk %}" method="POST">
   {% else %}
-  <h2>Nueva SubCategoria</h2>
-  <form action="{% url 'example:subcategorias-add' %}" method="POST">
+  <h2>Nueva Producto</h2>
+  <form action="{% url 'example:productos-add' %}" method="POST">
     {% endif %}
     {% csrf_token %}
     {{ form.as_p }}

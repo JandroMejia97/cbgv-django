@@ -1,12 +1,22 @@
 {% extends '../base.html' %}
 {% block content %}
-  <h2>SubCategorias</h2>
-  <a href="{% url 'example:subcategorias-add' %}">Añadir</a>
-  <ul>
-    {% for subcategoria in subcategorias %}
-      <li>{{ subcategoria.nombre }}</li>
-    {% empty %}
-      <p>No hay subcategorías</p>
-    {% endfor %}
-  </ul>
+<h2>SubCategorias</h2>
+<a href="{% url 'example:subcategorias-add' %}">Añadir</a>
+<ul>
+  {% for subcategoria in subcategorias %}
+  <li>
+    <a href="{% url 'example:subcategorias-detail' subcategoria.pk %}">
+      {{ subcategoria.nombre }}
+    </a>
+    <a href="{% url 'example:subcategorias-update' subcategoria.pk %}">
+      Editar
+     </a>
+    <a href="{% url 'example:subcategorias-delete' subcategoria.pk %}">
+     Eliminar
+    </a>
+  </li>
+  {% empty %}
+  <p>No hay subcategorías</p>
+  {% endfor %}
+</ul>
 {% endblock %}

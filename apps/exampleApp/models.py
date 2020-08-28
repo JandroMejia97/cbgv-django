@@ -47,13 +47,13 @@ class SubCategoria(models.Model):
 
 
 class Producto(models.Model):
-    categoria = models.ForeignKey(
+    subcategoria = models.ForeignKey(
         blank=False,
         null=False,
         to=SubCategoria,
         on_delete=models.CASCADE,
-        verbose_name=_('categoría'),
-        help_text=_('Categoría del producto.')
+        verbose_name=_('subcategoría'),
+        help_text=_('SubCategoría del producto.')
     )
     nombre = models.CharField(
         max_length=50,

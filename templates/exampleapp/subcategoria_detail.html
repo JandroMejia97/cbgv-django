@@ -1,0 +1,14 @@
+{% extends '../base.html'%}
+{% block content%}
+<h1>Detalle de subcategoria </h1>
+<p>Nombre: <b>{{ subcategoria.nombre }}</b></p>
+<span>Productos involucrados:</span>
+
+<ul>
+    {% for producto in productos %}
+    <li>{{producto.nombre }}</li>
+    {% empty %}
+    <li>No hay ni mergas </li>
+    {% endfor %}
+</ul>
+{% endblock %}

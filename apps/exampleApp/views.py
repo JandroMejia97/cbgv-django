@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from .models import *
-
+#Crud de SubCategorias
 class SubCategoriaList(generic.ListView):
     model = SubCategoria
     context_object_name= 'subcategorias'
@@ -19,6 +19,28 @@ class SubCategoriaCreate(generic.CreateView):
     success_url = reverse_lazy('example:subcategorias-list')
 
 
+class SubCategoriaDetail(generic.DetailView):
+    model = SubCategoria
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.object:
+            context['productos'] = Producto.objects.filter(subcategoria=self.object)
+        print(context)
+        return context
+
+
+class SubCategoriaDelete(generic.DeleteView):
+    model = SubCategoria
+    success_url = reverse_lazy('example:subcategorias-list')
+
+
+class SubCategoriaUpdate(generic.UpdateView):
+    model = SubCategoria
+    fields = ['categoria','nombre']
+    success_url = reverse_lazy('example:subcategorias-list')
+
+
+#Crud de Categorias
 class CategoriaDetail(generic.DetailView):
     context_object_name = 'categoria'
     model = Categoria
@@ -56,3 +78,14 @@ class CategoriaCreate(generic.CreateView):
 
 class IndexView(LoginRequiredMixin, generic.TemplateView):
     template_name ='./index.html'
+
+
+#Crud para productos
+class ProductoList(generic.ListView):
+    model = Producto
+
+
+class ProductoCreate(generic.CreateView):
+    model = Producto
+    fields = '__all__'
+    success_url = reverse_lazy('example:productos-list')

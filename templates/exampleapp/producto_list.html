@@ -1,0 +1,22 @@
+{% extends '../base.html' %}
+{% block content %}
+  <h2>Productos</h2>
+  <a href="{% url 'example:productos-add' %}">Añadir</a>
+  <ul>
+    {% for producto in object_list %}
+      <li>
+        <a href="#">
+          {{ producto.nombre }}
+        </a>
+        <a href="#">
+          Editar
+        </a>
+        <a href="#">
+          Eliminar
+        </a>
+      </li>
+    {% empty %}
+      <p>No Productos</p>
+    {% endfor %}
+  </ul>
+{% endblock %}
