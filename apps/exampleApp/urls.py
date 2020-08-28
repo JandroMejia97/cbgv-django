@@ -19,5 +19,8 @@ urlpatterns = [
     #Para el crud de productos
     path('productos/',views.ProductoList.as_view(),name='productos-list'),
     path('productos/add/', views.ProductoCreate.as_view(), name='productos-add'),
+    path('productos/<pk>/', views.ProductoDetail.as_view(),name="productos-detail"),
+    path('productos/<pk>/update/',views.ProductoUpdate.as_view(),name="productos-update"),
+     path('productos/<pk>/delete/', views.ProductoDelete.as_view(), name='productos-delete'),
 
 ]

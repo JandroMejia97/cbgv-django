@@ -89,3 +89,18 @@ class ProductoCreate(generic.CreateView):
     model = Producto
     fields = '__all__'
     success_url = reverse_lazy('example:productos-list')
+
+
+class ProductoDetail(generic.DetailView):    
+    model = Producto
+
+
+class ProductoUpdate(generic.UpdateView):
+    model = Producto
+    fields = ['subcategoria','nombre','descripion','precio']
+    success_url = reverse_lazy('example:productos-list')
+
+
+class ProductoDelete(generic.DeleteView):
+    model = Producto
+    success_url = reverse_lazy('example:productos-list')

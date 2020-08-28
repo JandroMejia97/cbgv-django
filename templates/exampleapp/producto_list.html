@@ -5,13 +5,13 @@
   <ul>
     {% for producto in object_list %}
       <li>
-        <a href="#">
+        <a href="{% url 'example:productos-detail' producto.pk %}">
           {{ producto.nombre }}
         </a>
-        <a href="#">
+        <a href="{% url 'example:productos-update' producto.pk %}">
           Editar
         </a>
-        <a href="#">
+        <a href="{% url 'example:productos-delete' producto.pk %}">
           Eliminar
         </a>
       </li>

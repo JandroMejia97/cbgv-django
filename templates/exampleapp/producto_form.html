@@ -2,7 +2,7 @@
 {% block content %}
 {% if object %}
 <h2>Update Producto</h2>
-<form action="{% url 'example:subcategorias-update' object.pk %}" method="POST">
+<form action="{% url 'example:productos-update' object.pk %}" method="POST">
   {% else %}
   <h2>Nueva Producto</h2>
   <form action="{% url 'example:productos-add' %}" method="POST">
