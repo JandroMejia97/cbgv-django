@@ -9,6 +9,20 @@
 {% endif %}
   {% csrf_token %}
   {{ form.as_p }}
+  <h2>SUBCATEGORIAS</h2>
+  {{ subcategorias.management_form }}
+  <div id="container">
+    {% for form in subcategorias %}
+      <div class="form">
+        {{form}}
+      </div>
+    {% endfor %}
+  </div>
+  <button type="button" id="btnAddForm" onclick="addForm('subcategoria')">Añadir</button>
+  <h2>OCULTO</h2>
+  <div class="hidden">
+    {{ subcategorias.empty_form }}
+  </div>
   <button type="submit">Guardar</button>
 </form>
 {% endblock %}

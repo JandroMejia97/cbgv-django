@@ -2,10 +2,12 @@ from django.shortcuts import render
 
 from django.views import generic
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from .models import *
+from .forms import *
 #Crud de SubCategorias
 class SubCategoriaList(generic.ListView):
     model = SubCategoria
@@ -59,6 +61,23 @@ class CategoriaUpdate(generic.UpdateView):
     fields = ['nombre']
     success_url = reverse_lazy('example:categorias-list')
 
+    def get_context_data(self, **kwargs):
+        if self.request.POST:
+            kwargs['subcategorias'] = SubCategoriaFormset(self.request.POST)
+        else:
+            kwargs['subcategorias'] = SubCategoriaFormset(instance=self.object)
+        kwargs.update()
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        subcategorias = context['subcategorias']
+        self.object = form.save()
+        if subcategorias.is_valid():
+            subcategorias.instance = self.object
+            subcategorias.save()
+        return HttpResponseRedirect(self.get_success_url())
+
 
 class CategoriaDelete(generic.DeleteView):
     model = Categoria
@@ -74,6 +93,23 @@ class CategoriaCreate(generic.CreateView):
     model = Categoria
     fields = '__all__'
     success_url = reverse_lazy('example:categorias-list')
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        if self.request.POST:
+            data['subcategorias'] = SubCategoriaFormset(self.request.POST)
+        else:
+            data['subcategorias'] = SubCategoriaFormset()
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        subcategorias = context['subcategorias']
+        self.object = form.save()
+        if subcategorias.is_valid():
+            subcategorias.instance = self.object
+            subcategorias.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class IndexView(LoginRequiredMixin, generic.TemplateView):
