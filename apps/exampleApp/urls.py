@@ -12,7 +12,7 @@ urlpatterns = [
     path('categorias/<pk>/delete/', views.CategoriaDelete.as_view(), name='categorias-delete'),
     #Para crud de SubCategoria
     path('subcategorias/',views.SubCategoriaList.as_view(),name='subcategorias-list'),
-    path('subcategorias/add',views.SubCategoriaCreate.as_view(),name='subcategorias-add'),
+    path('subcategorias/add',views.SubCategoriaCreate2.as_view(),name='subcategorias-add'),
     path('subcategoria/<pk>',views.SubCategoriaDetail.as_view(),name="subcategorias-detail"),
     path('subcategorias/<pk>/delete/', views.SubCategoriaDelete.as_view(), name='subcategorias-delete'),
     path('subcategorias/<pk>/update/',views.SubCategoriaUpdate.as_view(),name="subcategorias-update"),

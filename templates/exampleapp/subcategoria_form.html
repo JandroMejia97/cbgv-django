@@ -9,6 +9,22 @@
     {% endif %}
     {% csrf_token %}
     {{ form.as_p }}
+
+    <h2>Productos</h2>
+    {{productos.management_form}}
+    <div id="container">
+      {% for form in productos %}
+      <div class="form">
+        {{form}}
+        <br>
+      </div>
+      {% endfor %}
+    </div>
+    <button type="button" id="btnAddForm" onclick="addForm('producto')">Añadir</button>
+    <h2>OCULTO</h2>
+    <div class="hidden">
+      {{productos.empty_form}}
+    </div>
     <button type="submit">Guardar</button>
   </form>
   {% endblock %}

@@ -14,6 +14,29 @@ class SubCategoriaList(generic.ListView):
     context_object_name= 'subcategorias'
 
 
+class SubCategoriaCreate2(generic.CreateView):
+    model = SubCategoria
+    fields = '__all__'
+    success_url = reverse_lazy('example:subcategorias-list')
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        if self.request.POST:
+            data['productos'] = ProductoFormset(self.request.POST)
+        else:
+            data['productos'] = ProductoFormset()
+        return data
+    
+    def form_valid(self, form):
+        context = self.get_context_data()
+        productos = context['productos']
+        self.object = form.save()
+        if productos.is_valid():
+            productos.instance = self.object
+            productos.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+
 class SubCategoriaCreate(generic.CreateView):
     model = SubCategoria
     fields = '__all__'

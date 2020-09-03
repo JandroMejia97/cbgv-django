@@ -28,3 +28,12 @@ SubCategoriaFormset = forms.inlineformset_factory(
     min_num=3,
     max_num=8,
 )
+
+ProductoFormset = forms.inlineformset_factory(
+    parent_model=models.SubCategoria,
+    model=models.Producto,
+    fields='__all__',
+    extra=1,
+    min_num=2,
+    max_num=8,
+)
